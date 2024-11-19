@@ -11,6 +11,9 @@
 # Eclipse Core
 .project
 .sts4-cache/
+.factorypath
+*/.classpath
+*/target/*
 
 ### git
 .*.swp
