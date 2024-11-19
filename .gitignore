@@ -12,8 +12,8 @@
 .project
 .sts4-cache/
 .factorypath
-*/.classpath
-*/target/*
+.classpath
+target
 
 ### git
 .*.swp
