@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.enjoytrip.member.mapper.MemberMapper">
+
+	<resultMap type="memberDto" id="member">
+		<result column="user_id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="email" property="email"/>
+		<result column="password" property="password"/>
+		<result column="create_time" property="createdAt"/>
+		<result column="gender" property="gender"/>
+		<result column="age" property="age"/>
+	</resultMap>
+
+	<insert id="register" parameterType="requestRegisterDto">
+		insert into user(username, email, password, create_time, gender, age)
+		values (#{username}, #{email}, #{password}, now(), gender, age);
+	</insert>
+	
+	<select id="login" parameterType="map" resultMap="member">
+		select *
+		from user
+		where email = #{email} and password = #{password}
+	</select>
+	
+	<select id="mypageInfo" parameterType="map" resultMap="member">
+		select *
+		from user
+		where user_id = #{userId}
+	</select>
+	
+	<update id="modifyInfo" parameterType="map">
+		update user
+		set username=#{username}, password=#{password}, gender=#{gender}, age=#{age}
+		where user_id=#{userId}
+	</update>
+	
+	<delete id="deleteInfo" parameterType="int">
+		delete from user
+		where user_id=#{userId}
+	</delete>
+
+</mapper>
